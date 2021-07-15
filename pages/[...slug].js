@@ -14,7 +14,7 @@ export default function BasicPage({page}) {
 		<Head></Head>
 		<h1>{page.title}</h1>
 		<div className="content">{page.body}</div>
-		
+		<p>Lorem ipsum</p>
 	</div>
 
 }
