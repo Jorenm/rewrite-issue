@@ -1,12 +1,14 @@
 async function recursivelyFetchData(query, skip, fetchAll, preview) {
-	const pageLength = 5
+	const pageLength = 100
 
-	if (skip) {
-		// If we're on a page past the first, update the skip value.
-		query = query.replace(/skip: "\d+"/, `skip: "${skip}"`)
-	} else {
-		// If we're on page 0, add the skip value
-		query = query.replace('first:', `skip: "${skip}", first:`)
+	if (fetchAll) {
+		if (skip) {
+			// If we're on a page past the first, update the skip value.
+			query = query.replace(/skip: "\d+"/, `skip: "${skip}"`)
+		} else {
+			// If we're on page 0, add the skip value
+			query = query.replace('first:', `skip: "${skip}", first:`)
+		}
 	}
 
 	const res = await fetch(
@@ -53,7 +55,10 @@ async function recursivelyFetchData(query, skip, fetchAll, preview) {
 }
 
 async function fetchData(query, filters, fetchAll, preview) {
-	const pageLength = 5
+	const pageLength = 100
+
+	if (query.indexOf('allBlogPosts') > -1) {
+	}
 
 	query = `query MyQuery {
 		${query}
@@ -72,6 +77,7 @@ async function fetchData(query, filters, fetchAll, preview) {
 	} else {
 		query = query.replace('()', '')
 	}
+
 
 	let fetchedData = await recursivelyFetchData(query, 0, fetchAll, preview)
 

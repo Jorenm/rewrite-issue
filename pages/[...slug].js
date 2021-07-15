@@ -6,7 +6,7 @@ import _ from 'lodash'
 
 export default function BasicPage({page}) {
 	if (!page?.slug) {
-		return <ErrorPage statusCode={404} />
+		return '' // <ErrorPage statusCode={404} />
 	}
 
 	return <div>
