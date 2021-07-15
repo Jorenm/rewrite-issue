@@ -5,6 +5,7 @@ import {getPageBySlug} from 'data/cms'
 import _ from 'lodash'
 
 export default function BasicPage({page}) {
+	console.log('page', page)
 	if (!page?.slug) {
 		return '' // <ErrorPage statusCode={404} />
 	}
